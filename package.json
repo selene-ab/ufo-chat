@@ -1,14 +1,15 @@
 {
   "name": "ufo-chat",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple realtime chat using socket.io library",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "heroku-postbuild": "cd spa && npm install"
   },
-  "author": "",
+  "author": "selene-ab",
+  "repository": "https://github.com/selene-ab/ufo-chat",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
