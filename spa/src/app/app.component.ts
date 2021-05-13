@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     this.socket.fromEvent('chat').subscribe((message) => {
       this.arrayMessages.push(message);
       this.scrollChatWindow();
-      this.notifyNewMessage();
+      this.notifyNewMessage(message);
     });
   }
 
@@ -60,7 +60,9 @@ export class AppComponent implements OnInit {
     this.window.nativeElement.scroll(0, this.window.nativeElement.scrollHeight);
   }
 
-  notifyNewMessage() {
-    let notification = new Notification('Tienes un nuevo mensaje');
+  notifyNewMessage(message) {
+    if (message.name != this.userName) {
+      let notification = new Notification('Tienes un nuevo mensaje');
+    }
   }
 }
