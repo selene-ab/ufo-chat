@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   public message = '';
   public arrayMessages: any = [];
   public showEmojiPicker = false;
-  public set = 'native';
+  public set = 'apple';
   constructor(private socket: Socket) {}
 
   ngOnInit() {
