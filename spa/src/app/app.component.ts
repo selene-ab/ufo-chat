@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getMessages();
+    Notification.requestPermission().then((result) => {
+      console.log(result);
+    });
   }
 
   confirmUserName() {
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
     this.socket.fromEvent('chat').subscribe((message) => {
       this.arrayMessages.push(message);
       this.scrollChatWindow();
+      this.notifyNewMessage();
     });
   }
 
@@ -54,5 +58,9 @@ export class AppComponent implements OnInit {
 
   scrollChatWindow() {
     this.window.nativeElement.scroll(0, this.window.nativeElement.scrollHeight);
+  }
+
+  notifyNewMessage() {
+    let notification = new Notification('Tienes un nuevo mensaje');
   }
 }
