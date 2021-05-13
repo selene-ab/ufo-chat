@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
 @Component({
@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   public arrayMessages: any = [];
   public showEmojiPicker = false;
   public set = 'apple';
+  @ViewChild('chatWindow') window: ElementRef;
+
   constructor(private socket: Socket) {}
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit {
   getMessages() {
     this.socket.fromEvent('chat').subscribe((message) => {
       this.arrayMessages.push(message);
+      this.scrollChatWindow();
     });
   }
 
@@ -47,5 +50,9 @@ export class AppComponent implements OnInit {
     this.socket.emit('chat', this.message);
     this.message = '';
     this.showEmojiPicker = false;
+  }
+
+  scrollChatWindow() {
+    this.window.nativeElement.scroll(0, this.window.nativeElement.scrollHeight);
   }
 }
