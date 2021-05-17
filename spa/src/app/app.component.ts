@@ -20,9 +20,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getMessages();
-    Notification.requestPermission().then((result) => {
-      console.log(result);
-    });
+    if ('Notification' in window) {
+      Notification.requestPermission().then((result) => {
+        console.log(result);
+      });
+    }
   }
 
   confirmUserName() {
@@ -61,7 +63,7 @@ export class AppComponent implements OnInit {
   }
 
   notifyNewMessage(message) {
-    if (message.name != this.userName) {
+    if ('Notification' in window && message.name != this.userName) {
       let notification = new Notification('Tienes un nuevo mensaje');
     }
   }
